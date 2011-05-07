@@ -32,7 +32,8 @@
 
     - `hosts` Memcached servers locations, can by string, array, hash.
     - ...     Rest of given option will be passed directly to the node-memcached constructor.
-    For details see [node-memcached](http://github.com/3rd-Eden/node-memcached).
+
+  For details see [node-memcached](http://github.com/3rd-Eden/node-memcached).
 
 ## License 
 
