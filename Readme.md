@@ -29,22 +29,20 @@
     
 ## Example in Express JS
 
-  var express = require('express');
-  var MemcachedStore = require('/connect-memcached')(express);
-  app.configure(function(){
-  ...
-    app.use(express.session({
-      store: new MemcachedStore({
-          hosts: [
-              '192.168.1.65:11213',
-              '192.168.1.66:11213',
-              '192.168.1.67:11213'
-          ]
-      }), 
-      secret: 'thisissosick'
-    }));
-  ...
-  });
+    var express = require('express');
+    var MemcachedStore = require('/connect-memcached')(express);
+    app.configure(function(){
+      app.use(express.session({
+        store: new MemcachedStore({
+            hosts: [
+                '192.168.1.65:11213',
+                '192.168.1.66:11213',
+                '192.168.1.67:11213'
+            ]
+        }), 
+        secret: 'thisissosick'
+      }));
+    });
 
 ## Options
 
