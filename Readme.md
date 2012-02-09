@@ -32,6 +32,7 @@
 
     var express = require('express');
     var MemcachedStore = require('/connect-memcached')(express);
+    
     app.configure(function(){
       app.use(express.session({
         store: new MemcachedStore({
