@@ -1,0 +1,333 @@
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>connect-memcached<br />Copyright(c) 2012 Michał Thoma <a href=\"&#109;&#x61;&#x69;l&#116;o:&#x6D;&#105;&#x63;&#104;&#97;&#108;&#64;&#x62;&#97;&#108;&#111;&#114;&#x2E;&#112;&#x6C;\">&#x6D;&#105;&#x63;&#104;&#97;&#108;&#64;&#x62;&#97;&#108;&#111;&#114;&#x2E;&#112;&#x6C;</a><br />MIT Licensed</p>",
+      "summary": "<p>connect-memcached<br />Copyright(c) 2012 Michał Thoma <a href=\"&#109;&#97;&#x69;l&#116;&#x6F;:&#x6D;&#105;&#99;&#104;&#x61;&#x6C;&#x40;&#98;&#97;&#108;&#111;&#x72;&#46;&#x70;&#x6C;\">&#x6D;&#105;&#99;&#104;&#x61;&#x6C;&#x40;&#98;&#97;&#108;&#111;&#x72;&#46;&#x70;&#x6C;</a><br />MIT Licensed</p>",
+      "body": ""
+    },
+    "ignore": true
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>Library version.</p>",
+      "summary": "<p>Library version.</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "exports.version = '0.0.3';",
+    "ctx": {
+      "type": "property",
+      "receiver": "exports",
+      "name": "version",
+      "value": "'0.0.3'",
+      "string": "exports.version"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>Module dependencies.</p>",
+      "summary": "<p>Module dependencies.</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "var Memcached = require('memcached');",
+    "ctx": {
+      "type": "declaration",
+      "name": "Memcached",
+      "value": "require('memcached')",
+      "string": "Memcached"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>One day in seconds.</p>",
+      "summary": "<p>One day in seconds.</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "var oneDay = 86400;",
+    "ctx": {
+      "type": "declaration",
+      "name": "oneDay",
+      "value": "86400",
+      "string": "oneDay"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "object"
+        ],
+        "name": "connect",
+        "description": ""
+      },
+      {
+        "type": "return",
+        "types": [
+          "Function"
+        ],
+        "description": ""
+      },
+      {
+        "type": "api",
+        "visibility": "public"
+      }
+    ],
+    "description": {
+      "full": "<p>Return the <code>MemcachedStore</code> extending <code>connect</code>'s session Store.</p>",
+      "summary": "<p>Return the <code>MemcachedStore</code> extending <code>connect</code>'s session Store.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "module.exports = function(connect){",
+    "ctx": {
+      "type": "method",
+      "receiver": "module",
+      "name": "exports",
+      "string": "module.exports()"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>Connect's Store.</p>",
+      "summary": "<p>Connect's Store.</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "var Store = connect.session.Store;",
+    "ctx": {
+      "type": "declaration",
+      "name": "Store",
+      "value": "connect.session.Store",
+      "string": "Store"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "Object"
+        ],
+        "name": "options",
+        "description": ""
+      },
+      {
+        "type": "api",
+        "visibility": "public"
+      }
+    ],
+    "description": {
+      "full": "<p>Initialize MemcachedStore with the given <code>options</code>.</p>",
+      "summary": "<p>Initialize MemcachedStore with the given <code>options</code>.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "function MemcachedStore(options) {\n    options = options || {};\n    Store.call(this, options);\n    if (!options.hosts) {\n        options.hosts = '127.0.0.1:11211';\n    }\n    this.client = new Memcached(options.hosts, options);\n    console.log(\"MemcachedStore initialized for servers: \" + options.hosts);\n\n    this.client.on(\"issue\", function(issue) {\n        console.log(\"MemcachedStore::Issue @ \" + issue.server + \": \" + \n            issue.messages + \", \" + issue.retries  + \" attempts left\");\n    });\n  };",
+    "ctx": {
+      "type": "function",
+      "name": "MemcachedStore",
+      "string": "MemcachedStore()"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>Inherit from <code>Store</code>.</p>",
+      "summary": "<p>Inherit from <code>Store</code>.</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "MemcachedStore.prototype.__proto__ = Store.prototype;",
+    "ctx": {
+      "type": "property",
+      "constructor": "MemcachedStore",
+      "name": "__proto__",
+      "value": "Store.prototype",
+      "string": "MemcachedStore.prototype__proto__"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "String"
+        ],
+        "name": "sid",
+        "description": ""
+      },
+      {
+        "type": "param",
+        "types": [
+          "Function"
+        ],
+        "name": "fn",
+        "description": ""
+      },
+      {
+        "type": "api",
+        "visibility": "public"
+      }
+    ],
+    "description": {
+      "full": "<p>Attempt to fetch session by the given <code>sid</code>.</p>",
+      "summary": "<p>Attempt to fetch session by the given <code>sid</code>.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "MemcachedStore.prototype.get = function(sid, fn) {\n      this.client.get(sid, function(err, data) {\n          try {\n              if (!data) {\n                 return fn();\n              }\n              fn(null, JSON.parse(data.toString()));\n          } catch (err) {\n              fn(err);\n          } \n      });\n  };",
+    "ctx": {
+      "type": "method",
+      "constructor": "MemcachedStore",
+      "name": "get",
+      "string": "MemcachedStore.prototype.get()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "String"
+        ],
+        "name": "sid",
+        "description": ""
+      },
+      {
+        "type": "param",
+        "types": [
+          "Session"
+        ],
+        "name": "sess",
+        "description": ""
+      },
+      {
+        "type": "param",
+        "types": [
+          "Function"
+        ],
+        "name": "fn",
+        "description": ""
+      },
+      {
+        "type": "api",
+        "visibility": "public"
+      }
+    ],
+    "description": {
+      "full": "<p>Commit the given <code>sess</code> object associated with the given <code>sid</code>.</p>",
+      "summary": "<p>Commit the given <code>sess</code> object associated with the given <code>sid</code>.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "MemcachedStore.prototype.set = function(sid, sess, fn) {\n      try {\n          var maxAge = sess.cookie.maxAge\n          var ttl = 'number' == typeof maxAge ? maxAge / 1000 | 0 : oneDay\n          var sess = JSON.stringify(sess);\n\n          this.client.set(sid, sess, ttl, function() {\n              fn && fn.apply(this, arguments);\n          });\n      } catch (err) {\n          fn && fn(err);\n      } \n  };",
+    "ctx": {
+      "type": "method",
+      "constructor": "MemcachedStore",
+      "name": "set",
+      "string": "MemcachedStore.prototype.set()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "String"
+        ],
+        "name": "sid",
+        "description": ""
+      },
+      {
+        "type": "api",
+        "visibility": "public"
+      }
+    ],
+    "description": {
+      "full": "<p>Destroy the session associated with the given <code>sid</code>.</p>",
+      "summary": "<p>Destroy the session associated with the given <code>sid</code>.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "MemcachedStore.prototype.destroy = function(sid, fn) {\n        this.client.del(sid, fn);\n  };",
+    "ctx": {
+      "type": "method",
+      "constructor": "MemcachedStore",
+      "name": "destroy",
+      "string": "MemcachedStore.prototype.destroy()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "Function"
+        ],
+        "name": "fn",
+        "description": ""
+      },
+      {
+        "type": "api",
+        "visibility": "public"
+      }
+    ],
+    "description": {
+      "full": "<p>Fetch number of sessions.</p>",
+      "summary": "<p>Fetch number of sessions.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "MemcachedStore.prototype.length = function(fn) {\n        this.client.items(fn);\n  };",
+    "ctx": {
+      "type": "method",
+      "constructor": "MemcachedStore",
+      "name": "length",
+      "string": "MemcachedStore.prototype.length()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "Function"
+        ],
+        "name": "fn",
+        "description": ""
+      },
+      {
+        "type": "api",
+        "visibility": "public"
+      }
+    ],
+    "description": {
+      "full": "<p>Clear all sessions.</p>",
+      "summary": "<p>Clear all sessions.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "MemcachedStore.prototype.clear = function(fn) {\n        this.client.flush(fn);\n  };\n\n  return MemcachedStore;\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "MemcachedStore",
+      "name": "clear",
+      "string": "MemcachedStore.prototype.clear()"
+    }
+  }
+]

@@ -1,6 +1,6 @@
 {
     "name": "connect-memcached"
-  , "version": "0.0.2"
+  , "version": "0.0.3"
   , "description": "Memcached session store for Connect"
   , "keywords": ["memcached", "connection", "session", "store", "cache"]
   , "author": "Michał Thoma <michal@balor.pl>"
@@ -8,7 +8,8 @@
     "type": "git",
     "url": "https://github.com/balor/connect-memcached"
   }
-  , "dependencies": { "memcached": ">= 0.0.1", "connect": "*" }
+  , "dependencies": { "memcached": ">= 0.0.1" }
+  , "devDependencies": { "connect": ">= 1.4.x" }
   , "main": "index"
   , "engines": { "node": ">=0.4.7" }
   , "directories": { "lib": "./lib" }
