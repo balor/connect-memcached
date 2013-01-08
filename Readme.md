@@ -56,6 +56,8 @@
 ## Options
 
     - `hosts` Memcached servers locations, can by string, array, hash.
+    - `prefix` An optional prefix for each memcache key, in case you are sharing 
+               your memcached servers with something generating its own keys. 
     - ...     Rest of given option will be passed directly to the node-memcached constructor.
 
   For details see [node-memcached](http://github.com/3rd-Eden/node-memcached).
