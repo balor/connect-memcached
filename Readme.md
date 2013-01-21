@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/balor/connect-memcached.png)](http://travis-ci.org/balor/connect-memcached)
 
 # connect-memcached
 
