@@ -38,7 +38,7 @@
       app.use(express.session({ 
         secret: 'CatOnTheKeyboard', 
         store: new MemcachedStore({
-          hosts: [ '127.0.0.1:11212' ] // set to your memcache server's host; see Options for additional info
+          hosts: [ '127.0.0.1:11212' ] // Change this to your memcache server(s). See Options for additional info.
         })
       }));
 
