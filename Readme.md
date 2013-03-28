@@ -1,4 +1,3 @@
-
 # connect-memcached
 
   Memcached session store, using [node-memcached](http://github.com/3rd-Eden/node-memcached) for communication with cache server.
@@ -38,7 +37,9 @@
 
       app.use(express.session({ 
         secret: 'CatOnTheKeyboard', 
-        store: new MemcachedStore 
+        store: new MemcachedStore({
+          hosts: [ '127.0.0.1:11212' ] // set to your memcache server's host; see Options for additional info
+        })
       }));
 
       app.get('/', function(req, res){
@@ -55,7 +56,7 @@
 
 ## Options
 
-    - `hosts` Memcached servers locations, can by string, array, hash.
+    - `hosts` Memcached servers locations, can be string, array, hash.
     - `prefix` An optional prefix for each memcache key, in case you are sharing 
                your memcached servers with something generating its own keys. 
     - ...     Rest of given option will be passed directly to the node-memcached constructor.
