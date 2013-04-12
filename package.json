@@ -8,9 +8,7 @@
     "type": "git",
     "url": "https://github.com/tmont/connect-memcached"
   }
-  , "dependencies": { "memcached": ">= 0.2.2" }
-  , "devDependencies": { "connect": ">= 1.4.x" }
-  , "main": "index"
+  , "dependencies": { "memcached": "0.2.2" }
   , "engines": { "node": ">=0.4.7" }
   , "directories": { "lib": "./lib" }
 }
