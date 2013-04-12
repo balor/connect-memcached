@@ -1,6 +1,6 @@
 {
     "name": "connect-memcached"
-  , "version": "0.0.5"
+  , "version": "0.0.6"
   , "description": "Memcached session store for Connect"
   , "keywords": ["memcached", "connection", "session", "store", "cache"]
   , "author": "Michał Thoma <michal@balor.pl>"
