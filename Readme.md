@@ -20,7 +20,7 @@
       // allowing it to inherit from express.session.Store
       var MemcachedStore = require('connect-memcached')(express);
 
-      var app = express.createServer();
+      var app = express();
 
       app.use(express.favicon());
 
@@ -38,7 +38,7 @@
       app.use(express.session({
         secret: 'CatOnTheKeyboard',
         store: new MemcachedStore({
-          hosts: [ '127.0.0.1:11212' ] // Change this to your memcache server(s). See Options for additional info.
+          hosts: [ '127.0.0.1:11211' ] // Change this to your memcache server(s). See Options for additional info.
         })
       }));
 
