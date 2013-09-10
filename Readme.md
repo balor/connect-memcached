@@ -9,7 +9,7 @@
       $ npm install connect-memcached
 
 ## Example
-
+```javascript
       /**
       * Module dependencies.
       */
@@ -35,8 +35,8 @@
       // - req.sessionStore
       // - req.sessionID (or req.session.id)
 
-      app.use(express.session({ 
-        secret: 'CatOnTheKeyboard', 
+      app.use(express.session({
+        secret: 'CatOnTheKeyboard',
         store: new MemcachedStore({
           hosts: [ '127.0.0.1:11212' ] // Change this to your memcache server(s). See Options for additional info.
         })
@@ -53,17 +53,17 @@
 
       app.listen(3000);
       console.log('Express app started on port 3000');
+```
 
 ## Options
+- `hosts` Memcached servers locations, can by string, array, hash.
+- `prefix` An optional prefix for each memcache key, in case you are sharing
+           your memcached servers with something generating its own keys.
+- ...     Rest of given option will be passed directly to the node-memcached constructor.
 
-    - `hosts` Memcached servers locations, can be string, array, hash.
-    - `prefix` An optional prefix for each memcache key, in case you are sharing 
-               your memcached servers with something generating its own keys. 
-    - ...     Rest of given option will be passed directly to the node-memcached constructor.
+For details see [node-memcached](http://github.com/3rd-Eden/node-memcached).
 
-  For details see [node-memcached](http://github.com/3rd-Eden/node-memcached).
-
-## License 
+## License
 
 (The MIT License)
 
