@@ -63,11 +63,13 @@
 
 For details see [node-memcached](http://github.com/3rd-Eden/node-memcached).
 
+## Contributors
+
+Big thanks for the priceless contributors! See the actual list [here](https://github.com/balor/connect-memcached/graphs/contributors)!
+
 ## License
 
 (The MIT License)
-
-Copyright (c) 2011 Michał Thoma &lt;michal@balor.pl&gt;
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

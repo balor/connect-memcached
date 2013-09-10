@@ -3,7 +3,7 @@
   , "version": "0.0.6"
   , "description": "Memcached session store for Connect"
   , "keywords": ["memcached", "connection", "session", "store", "cache"]
-  , "author": "Michał Thoma <michal@balor.pl>"
+  , "author": "Michał Thoma <me@balor.pl>"
   , "repository": {
     "type": "git",
     "url": "https://github.com/tmont/connect-memcached"
