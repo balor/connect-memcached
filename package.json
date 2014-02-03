@@ -6,7 +6,7 @@
   , "author": "Michał Thoma <me@balor.pl>"
   , "repository": {
     "type": "git",
-    "url": "https://github.com/tmont/connect-memcached"
+    "url": "https://github.com/balor/connect-memcached"
   }
   , "dependencies": { "memcached": "0.2.2" }
   , "engines": { "node": ">=0.4.7" }
