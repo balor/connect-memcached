@@ -10,5 +10,6 @@
   }
   , "dependencies": { "memcached": "0.2.2" }
   , "engines": { "node": ">=0.4.7" }
+  , "license": "MIT"
   , "directories": { "lib": "./lib" }
 }
