@@ -8,7 +8,7 @@
     "type": "git",
     "url": "https://github.com/balor/connect-memcached"
   }
-  , "dependencies": { "memcached": "0.2.2" }
+  , "dependencies": { "memcached": "0.2.x" }
   , "engines": { "node": ">=0.4.7" }
   , "license": "MIT"
   , "directories": { "lib": "./lib" }
