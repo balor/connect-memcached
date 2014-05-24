@@ -11,7 +11,8 @@ app.use(session({
     , key     : 'test'
     , proxy   : 'true'
     , store   : new MemcachedStore({
-        hosts: [ '127.0.0.1:11211' ]
+        hosts: [ '127.0.0.1:11211' ],
+        prefix: 'testapp_'
     })
 }));
 
