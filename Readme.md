@@ -12,49 +12,35 @@ $ npm install connect-memcached
 
 ## Example
 ```javascript
-/**
-* Module dependencies.
-*/
+var express      = require('express')
+, session        = require('express-session')
+, cookieParser   = require('cookie-parser')
+, http           = require('http')
+, app            = express()
+, MemcachedStore = require('connect-memcached')(session);
 
-var express = require('express');
-
-// pass the express to the connect memcached module
-// allowing it to inherit from express.session.Store
-var MemcachedStore = require('connect-memcached')(express);
-
-var app = express();
-
-app.use(express.favicon());
-
-// request logging
-app.use(express.logger());
-
-// required to parse the session cookie
-app.use(express.cookieParser());
-
-// Populates:
-// - req.session
-// - req.sessionStore
-// - req.sessionID (or req.session.id)
-
-app.use(express.session({
-  secret: 'CatOnTheKeyboard',
-  store: new MemcachedStore({
-    hosts: [ '127.0.0.1:11211' ] // Change this to your memcache server(s). See Options for additional info.
-  })
+app.use(cookieParser());
+app.use(session({
+      secret  : 'CatOnKeyboard'
+    , key     : 'test'
+    , proxy   : 'true'
+    , store   : new MemcachedStore({
+        hosts: ['127.0.0.1:11211']
+    })
 }));
 
 app.get('/', function(req, res){
-  if (req.session.views) {
-    ++req.session.views;
-  } else {
-    req.session.views = 1;
-  }
-  res.send('Viewed <strong>' + req.session.views + '</strong> times.');
+    if(req.session.views) {
+        ++req.session.views;
+    } else {
+        req.session.views = 1;
+    }
+    res.send('Viewed <strong>' + req.session.views + '</strong> times.');
 });
 
-app.listen(3000);
-console.log('Express app started on port 3000');
+http.createServer(app).listen(9341, function() {
+    console.log("Listening on %d", this.address().port);
+});
 ```
 
 ## Options
