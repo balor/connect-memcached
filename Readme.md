@@ -44,7 +44,7 @@ http.createServer(app).listen(9341, function() {
 ```
 
 ## Options
-- `hosts` Memcached servers locations, can by string, array, hash.
+- `hosts` Memcached servers locations, can be string, array, hash.
 - `prefix` An optional prefix for each memcache key, in case you are sharing your memcached servers with something generating its own keys.
 - ...     Rest of given option will be passed directly to the node-memcached constructor.
 
