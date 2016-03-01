@@ -47,6 +47,7 @@ http.createServer(app).listen(9341, function() {
 ## Options
 - `hosts` Memcached servers locations, can be string, array, hash.
 - `prefix` An optional prefix for each memcache key, in case you are sharing your memcached servers with something generating its own keys.
+- `ttl` An optional parameter used for setting the default TTL
 - `secret` An optional secret can be used to encrypt/decrypt session contents.
 - `algorithm` An optional algorithm parameter may be used, but must be valid based on returned `crypto.getCiphers()`. The current default is `aes-256-ctr` and was chosen based on the following [information](http://www.daemonology.net/blog/2009-06-11-cryptographic-right-answers.html)
 - ...     Rest of given option will be passed directly to the node-memcached constructor.
