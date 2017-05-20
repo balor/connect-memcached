@@ -50,6 +50,7 @@ http.createServer(app).listen(9341, function() {
 - `ttl` An optional parameter used for setting the default TTL (in seconds)
 - `secret` An optional secret can be used to encrypt/decrypt session contents.
 - `algorithm` An optional algorithm parameter may be used, but must be valid based on returned `crypto.getCiphers()`. The current default is `aes-256-ctr` and was chosen based on the following [information](http://www.daemonology.net/blog/2009-06-11-cryptographic-right-answers.html)
+- `serverSupportsTouch` Set true if your memcached server version is at least 1.4.14 to enable the more efficient touch protocol.
 - ...     Rest of given option will be passed directly to the node-memcached constructor.
 
 For details see [node-memcached](http://github.com/3rd-Eden/node-memcached).
