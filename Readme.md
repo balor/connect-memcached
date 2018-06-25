@@ -24,6 +24,8 @@ app.use(session({
       secret  : 'CatOnKeyboard'
     , key     : 'test'
     , proxy   : 'true'
+    , resave: false
+    , saveUninitialized: false
     , store   : new MemcachedStore({
         hosts: ['127.0.0.1:11211'],
         secret: '123, easy as ABC. ABC, easy as 123' // Optionally use transparent encryption for memcache session data
