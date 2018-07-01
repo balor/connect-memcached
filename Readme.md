@@ -60,6 +60,14 @@ http.createServer(app).listen(9341, function() {
 
 For details see [node-memcached](http://github.com/3rd-Eden/node-memcached).
 
+## Upgrading from v0.x.x -> v1.x.x
+
+If You're upgrading from the pre v1.0.0 version of this library and use encryption for session data be sure to **remove all session entries created with previous version**. 
+
+Upgrading library without taking appropriate action will result in `SyntaxError` exceptions during JSON parsing of decoded entries. 
+
+Sessions without encryption are not affected.
+
 ## Contributors
 
 Big thanks for the contributors! See the actual list [here](https://github.com/balor/connect-memcached/graphs/contributors)!

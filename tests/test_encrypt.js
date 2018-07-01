@@ -15,7 +15,7 @@ app.use(
     saveUninitialized: false,
     store: new MemcachedStore({
       hosts: ["127.0.0.1:11211"],
-      secret: "Keep quiet, Im working!",
+      secret: "Hello there stranger!",
       prefix: "testapp_encrypt_"
     })
   })
