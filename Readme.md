@@ -30,7 +30,7 @@ app.use(
     saveUninitialized: false,
     store: new MemcachedStore({
       hosts: ["127.0.0.1:11211"],
-      secret: "123, easy as ABC. ABC, easy as 123" // Optionally use transparent encryption for memcache session data
+      secret: "123, easy as ABC. ABC, easy as 123" // Encrypt session data
     })
   })
 );
@@ -55,7 +55,9 @@ http.createServer(app).listen(9341, function() {
 - `prefix` An optional prefix for each memcache key, in case you are sharing your memcached servers with something generating its own keys.
 - `ttl` An optional parameter used for setting the default TTL (in seconds)
 - `secret` An optional secret can be used to encrypt/decrypt session contents.
-- `algorithm` An optional algorithm parameter may be used, but must be valid based on returned `crypto.getCiphers()`. The current default is `aes-256-ctr` and was chosen based on the following [information](http://www.daemonology.net/blog/2009-06-11-cryptographic-right-answers.html)
+- `algorithm` An optional algorithm parameter may be used, but must be valid based on returned `crypto.getCiphers()`. The current default is `aes-256-gcm`.
+- `hashing` You can specify an alternate hashing algorithm as well; default is `sha512`.
+- `encodeas` If you have issues with the memcached data you can speificy the encoding of the cipher text; default is `hex`.
 - ... Rest of given option will be passed directly to the node-memcached constructor.
 
 For details see [node-memcached](http://github.com/3rd-Eden/node-memcached).

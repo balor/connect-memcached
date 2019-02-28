@@ -15,7 +15,6 @@
     "url": "https://github.com/balor/connect-memcached"
   },
   "dependencies": {
-    "buffer-from": "1.1.0",
     "memcached": "2.2.x"
   },
   "engines": {
