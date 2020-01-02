@@ -57,7 +57,6 @@ http.createServer(app).listen(9341, function() {
 - `secret` An optional secret can be used to encrypt/decrypt session contents.
 - `algorithm` An optional algorithm parameter may be used, but must be valid based on returned `crypto.getCiphers()`. The current default is `aes-256-gcm`.
 - `hashing` You can specify an alternate hashing algorithm as well; default is `sha512`.
-- `encodeas` If you have issues with the memcached data you can speificy the encoding of the cipher text; default is `hex`.
 - ... Rest of given option will be passed directly to the node-memcached constructor.
 
 For details see [node-memcached](http://github.com/3rd-Eden/node-memcached).

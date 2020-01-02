@@ -15,6 +15,7 @@
     "url": "https://github.com/balor/connect-memcached"
   },
   "dependencies": {
+    "kruptein": "^2.0.4",
     "memcached": "2.2.x"
   },
   "engines": {
