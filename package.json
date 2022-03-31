@@ -18,6 +18,21 @@
     "buffer-from": "1.1.0",
     "memcached": "2.2.x"
   },
+  "devDependencies": {
+    "express": "^4.17.3",
+    "express-session": "^1.17.2",
+    "jest": "^27.5.1",
+    "supertest": "^6.2.2"
+  },
+  "scripts": {
+    "test": "NODE_ENV=test jest --testTimeout=10000"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  },
   "engines": {
     "node": ">= 0.10.0"
   },
