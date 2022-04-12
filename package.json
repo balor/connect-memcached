@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "buffer-from": "1.1.0",
+    "kruptein": "^2.0.4",
     "memcached": "2.2.x"
   },
   "devDependencies": {
