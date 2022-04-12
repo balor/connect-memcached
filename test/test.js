@@ -1,7 +1,7 @@
 const supertest = require("supertest");
 
 
-describe("Counter using basic memcached", () => {
+describe("Plain memcached session store", () => {
   const { app, memcachedStore } = require("./services/memcached_basic.js");
   const serverAgent = supertest.agent(app);
 
@@ -21,7 +21,7 @@ describe("Counter using basic memcached", () => {
   });
 });
 
-describe("Counter using encrypted memcached", () => {
+describe("Encrypted memcached session store", () => {
   const { app, memcachedStore } = require("./services/memcached_crypt.js");
   const serverAgent = supertest.agent(app);
 
@@ -41,7 +41,7 @@ describe("Counter using encrypted memcached", () => {
   });
 });
 
-describe("Counter using preexising encrypted memcached client", () => {
+describe("Encrypted session store using preexising memcached client", () => {
   const { app, memcachedStore } = require("./services/memcached_preexisting_crypt_connection.js");
   const serverAgent = supertest.agent(app);
 
