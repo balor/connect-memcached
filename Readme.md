@@ -4,10 +4,16 @@ Memcached session store, using [node-memcached](http://github.com/3rd-Eden/node-
 
 ## Installation
 
-via npm:
+npm:
 
-```bash
-$ npm install connect-memcached
+```shell
+npm install connect-memcached express-session
+```
+
+yarn:
+
+```shell
+yarn add connect-memcached express-session
 ```
 
 ## Example
@@ -15,12 +21,9 @@ $ npm install connect-memcached
 ```javascript
 var express = require("express"),
   session = require("express-session"),
-  cookieParser = require("cookie-parser"),
-  http = require("http"),
   app = express(),
   MemcachedStore = require("connect-memcached")(session);
 
-app.use(cookieParser());
 app.use(
   session({
     secret: "CatOnKeyboard",
@@ -44,7 +47,7 @@ app.get("/", function(req, res) {
   res.send("Viewed <strong>" + req.session.views + "</strong> times.");
 });
 
-http.createServer(app).listen(9341, function() {
+app.listen(9341, function() {
   console.log("Listening on %d", this.address().port);
 });
 ```
