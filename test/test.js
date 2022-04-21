@@ -52,7 +52,7 @@ describe("Encrypted session store using preexising memcached client", () => {
       expect(res.status).toEqual(200);
       expect(res.type).toEqual(expect.stringContaining("json"));
       expect(res.body.pageviews).toBeGreaterThan(lastPageView);
-      expect(memcachedStore.crypto).toBe(require("crypto"));
+      expect(memcachedStore.kruptein.crypto).toBe(require("crypto"));
       lastPageView = res.body.pageviews;
     }
   });
