@@ -60,7 +60,7 @@ app.listen(9341, function() {
 - `secret` (Optional) Secret used to encrypt/decrypt session contents. Setting it enables data encryption, which is handled by [kruptein](https://github.com/jas-/kruptein) module.
 - `algorithm` (Optional) Cipher algorithm from `crypto.getCiphers()`. Default is `aes-256-gcm`.
 - `hashing` (Optional) Hash algorithm from `crypto.getHashes()`. Default is `sha512`.
-- ... Rest of given option will be passed directly to the [node-memcached](http://github.com/3rd-Eden/node-memcached) and [kruptein](https://github.com/jas-/kruptein) constructors, see their appropriate docs for extra configurability.
+- ... Rest of given options will be passed directly to the [node-memcached](http://github.com/3rd-Eden/node-memcached) and [kruptein](https://github.com/jas-/kruptein) constructors, see their appropriate docs for extra configurability.
 
 ## Upgrading to v2.x.x
 
