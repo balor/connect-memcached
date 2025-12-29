@@ -33,7 +33,7 @@ app.use(
     saveUninitialized: false,
     store: new MemcachedStore({
       hosts: ["127.0.0.1:11211"],
-      secret: "123, easy as ABC. ABC, easy as 123" // Optionally use transparent encryption for memcached session data
+      secret: "Xj8$kLp2@Qa9#Zt5!" // Optionally use transparent encryption for memcached session data (must meet complexity requirements)
     })
   })
 );
@@ -64,9 +64,30 @@ app.listen(9341, function() {
 
 ## Upgrading to v3.x.x
 
-**Breaking change:** v3.0.0 requires Node.js >= 12.0.0. Support for Node.js versions 4, 6, 8, and 10 has been dropped.
+v3.0.0 introduces two breaking changes:
 
-If you're running an older Node.js version, please upgrade to Node.js 12 or later before upgrading to v3.x.x.
+### 1. Node.js version requirement
+
+**Breaking change:** v3.0.0 requires Node.js >= 14.0.0. Support for Node.js versions 4-12 has been dropped.
+
+If you're running an older Node.js version, please upgrade to Node.js 14 or later before upgrading to v3.x.x.
+
+### 2. Stronger secret requirements for encryption
+
+**Breaking change:** The `kruptein` dependency has been updated to enforce stricter password complexity requirements for the `secret` option. If you use encryption (set the `secret` option), your secret must now meet these requirements:
+
+- Minimum length: 8 characters
+- Minimum 2 uppercase letters
+- Minimum 2 lowercase letters
+- Minimum 2 numbers
+- Minimum 2 special characters (`!@#$%^&*()_+-=[]{};':"\\|,.<>/?`)
+
+**IMPORTANT:** Check if your current secret meets these requirements:
+
+- **If your secret already meets the requirements:** You can upgrade safely with no additional action needed.
+- **If your secret does NOT meet the requirements:** You MUST flush all encrypted session data from memcached before upgrading AND update your secret to meet the new requirements. All existing encrypted session data will become inaccessible with the new secret.
+
+Sessions without encryption (no `secret` option) are not affected.
 
 ## Upgrading to v2.x.x
 

@@ -9,7 +9,7 @@ const memcachedClient = new Memcached(process.env.MEMCACHED_HOST || "127.0.0.1:1
 const memcachedStore = new MemcachedStore({
   client: memcachedClient,
   prefix: "testapp_encrypt_",
-  secret: "Hello there stranger!",
+  secret: "Hello There Stranger2025!?",
 });
 
 app.use(
