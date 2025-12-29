@@ -62,6 +62,12 @@ app.listen(9341, function() {
 - `hashing` (Optional) Hash algorithm from `crypto.getHashes()`. Default is `sha512`.
 - ... Rest of given options will be passed directly to the [node-memcached](http://github.com/3rd-Eden/node-memcached) and [kruptein](https://github.com/jas-/kruptein) constructors, see their appropriate docs for extra configurability.
 
+## Upgrading to v3.x.x
+
+**Breaking change:** v3.0.0 requires Node.js >= 12.0.0. Support for Node.js versions 4, 6, 8, and 10 has been dropped.
+
+If you're running an older Node.js version, please upgrade to Node.js 12 or later before upgrading to v3.x.x.
+
 ## Upgrading to v2.x.x
 
 When upgrading from pre v2 and using data encryption please flush all the session entries from memcached before rolling the update.
