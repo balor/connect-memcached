@@ -4,3 +4,115 @@ services:
     ports:
       - "11211:11211"
     command: memcached -m 64
+
+  test-node-12:
+    image: node:12-alpine
+    depends_on:
+      - memcached
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      - NODE_ENV=test
+      - MEMCACHED_HOST=memcached:11211
+      - NPM_CONFIG_FUND=false
+      - NPM_CONFIG_UPDATE_NOTIFIER=false
+    command: sh -c "npm install && npm test"
+
+  test-node-14:
+    image: node:14-alpine
+    depends_on:
+      - memcached
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      - NODE_ENV=test
+      - MEMCACHED_HOST=memcached:11211
+      - NPM_CONFIG_FUND=false
+      - NPM_CONFIG_UPDATE_NOTIFIER=false
+    command: sh -c "npm install && npm test"
+
+  test-node-16:
+    image: node:16-alpine
+    depends_on:
+      - memcached
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      - NODE_ENV=test
+      - MEMCACHED_HOST=memcached:11211
+      - NPM_CONFIG_FUND=false
+      - NPM_CONFIG_UPDATE_NOTIFIER=false
+    command: sh -c "npm install && npm test"
+
+  test-node-18:
+    image: node:18-alpine
+    depends_on:
+      - memcached
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      - NODE_ENV=test
+      - MEMCACHED_HOST=memcached:11211
+      - NPM_CONFIG_FUND=false
+      - NPM_CONFIG_UPDATE_NOTIFIER=false
+    command: sh -c "npm install && npm test"
+
+  test-node-20:
+    image: node:20-alpine
+    depends_on:
+      - memcached
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      - NODE_ENV=test
+      - MEMCACHED_HOST=memcached:11211
+      - NPM_CONFIG_FUND=false
+      - NPM_CONFIG_UPDATE_NOTIFIER=false
+    command: sh -c "npm install && npm test"
+
+  test-node-22:
+    image: node:22-alpine
+    depends_on:
+      - memcached
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      - NODE_ENV=test
+      - MEMCACHED_HOST=memcached:11211
+      - NPM_CONFIG_FUND=false
+      - NPM_CONFIG_UPDATE_NOTIFIER=false
+    command: sh -c "npm install && npm test"
+
+  test-node-24:
+    image: node:24-alpine
+    depends_on:
+      - memcached
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      - NODE_ENV=test
+      - MEMCACHED_HOST=memcached:11211
+      - NPM_CONFIG_FUND=false
+      - NPM_CONFIG_UPDATE_NOTIFIER=false
+    command: sh -c "npm install && npm test"
+
+  test-node-25:
+    image: node:25-alpine
+    depends_on:
+      - memcached
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      - NODE_ENV=test
+      - MEMCACHED_HOST=memcached:11211
+      - NPM_CONFIG_FUND=false
+      - NPM_CONFIG_UPDATE_NOTIFIER=false
+    command: sh -c "npm install && npm test"

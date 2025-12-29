@@ -4,7 +4,7 @@ const express = require("express"),
   MemcachedStore = require("../../lib/connect-memcached")(session);
 
 const memcachedStore = new MemcachedStore({
-  hosts: ["127.0.0.1:11211"],
+  hosts: [process.env.MEMCACHED_HOST || "127.0.0.1:11211"],
   secret: "Hello there stranger!",
   prefix: "testapp_encrypt_",
 });
