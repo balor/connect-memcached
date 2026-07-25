@@ -1,6 +1,6 @@
 {
   "name": "connect-memcached",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "Memcached session store for Connect",
   "keywords": [
     "memcached",
@@ -15,7 +15,7 @@
     "url": "https://github.com/balor/connect-memcached"
   },
   "dependencies": {
-    "kruptein": "3.1.x",
+    "kruptein": "3.4.x",
     "memcached": "2.2.x"
   },
   "devDependencies": {
@@ -34,7 +34,7 @@
     ]
   },
   "engines": {
-    "node": ">= 14.0.0"
+    "node": ">= 18.0.0"
   },
   "license": "MIT",
   "directories": {

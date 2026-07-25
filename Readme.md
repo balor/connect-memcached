@@ -62,6 +62,30 @@ app.listen(9341, function() {
 - `hashing` (Optional) Hash algorithm from `crypto.getHashes()`. Default is `sha512`.
 - ... Rest of given options will be passed directly to the [node-memcached](http://github.com/3rd-Eden/node-memcached) and [kruptein](https://github.com/jas-/kruptein) constructors, see their appropriate docs for extra configurability.
 
+## Upgrading to v4.x.x
+
+v4.0.0 upgrades the `kruptein` dependency from 3.1.x to 3.4.x and introduces
+two breaking changes:
+
+### 1. Node.js version requirement
+
+**Breaking change:** v4.0.0 requires Node.js >= 18.0.0 (inherited from
+kruptein 3.4.x). Support for Node.js 14-16 has been dropped.
+
+### 2. Previously encrypted session data becomes unreadable
+
+**Breaking change for encrypted sessions:** kruptein 3.4.x changed its key
+derivation (async PBKDF2 with 20 000 iterations instead of 15 000), so session
+data encrypted by previous releases **cannot be decrypted after the upgrade**.
+Flush all encrypted session entries from memcached before deploying. Undecryptable
+entries left behind degrade gracefully — affected users simply get a fresh session
+instead of an error.
+
+Sessions without encryption (no `secret` option) are not affected.
+
+This release also fixes the encryption integration to be fully asynchronous and
+to never write unencrypted session data to memcached when encryption fails.
+
 ## Upgrading to v3.x.x
 
 v3.0.0 introduces two breaking changes:
