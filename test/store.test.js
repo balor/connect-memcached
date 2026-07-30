@@ -9,6 +9,69 @@ function sess(views) {
   return { cookie: { maxAge: 60000 }, views: views };
 }
 
+function pset(store, sid, session) {
+  return new Promise((resolve, reject) => {
+    store.set(sid, session, (err) => (err ? reject(err) : resolve()));
+  });
+}
+
+function pget(store, sid) {
+  return new Promise((resolve, reject) => {
+    store.get(sid, (err, data) => (err ? reject(err) : resolve(data)));
+  });
+}
+
+// Registers concurrency tests against the store produced by getStore().
+// Simulates many users hitting the service at the same moment: every user
+// carries a unique marker so any cross-talk between parallel operations is
+// detected as a wrong value rather than a lost write.
+function concurrencySuite(getStore) {
+  const USERS = 100;
+
+  it(`handles ${USERS} concurrent first-time writes and reads without cross-talk`, async () => {
+    const store = getStore();
+    const users = Array.from({ length: USERS }, (_, i) => ({
+      sid: "conc-" + i,
+      marker: 1000 + i,
+    }));
+
+    // All users write their first session at the same time
+    await Promise.all(users.map((u) => pset(store, u.sid, sess(u.marker))));
+
+    // All users read back at the same time; everyone must see their own data
+    const firstReads = await Promise.all(users.map((u) => pget(store, u.sid)));
+    firstReads.forEach((data, i) => {
+      expect(data).toBeDefined();
+      expect(data.views).toBe(users[i].marker);
+    });
+  });
+
+  it(`handles ${USERS} concurrent interleaved write->read->increment->read cycles`, async () => {
+    const store = getStore();
+    const users = Array.from({ length: USERS }, (_, i) => ({
+      sid: "cycle-" + i,
+      marker: 5000 + i,
+    }));
+
+    // Each user runs a session-like update cycle; all cycles run in parallel
+    await Promise.all(
+      users.map(async (u) => {
+        await pset(store, u.sid, sess(u.marker));
+
+        const first = await pget(store, u.sid);
+        expect(first.views).toBe(u.marker);
+
+        first.views += 1; // simulate a pageview increment
+        await pset(store, u.sid, first);
+
+        const second = await pget(store, u.sid);
+        expect(second.views).toBe(u.marker + 1);
+        expect(second.cookie.maxAge).toBe(60000);
+      })
+    );
+  });
+}
+
 describe("MemcachedStore direct API (plain)", () => {
   let client, store;
 
@@ -68,6 +131,8 @@ describe("MemcachedStore direct API (plain)", () => {
       });
     });
   });
+
+  concurrencySuite(() => store);
 });
 
 describe("MemcachedStore direct API (encrypted)", () => {
@@ -158,4 +223,41 @@ describe("MemcachedStore direct API (encrypted)", () => {
       });
     });
   });
+
+  it(`handles ${100} concurrent users without leaking plaintext or cross-talk`, async () => {
+    const USERS = 100;
+    const users = Array.from({ length: USERS }, (_, i) => ({
+      sid: "crowd-" + i,
+      marker: 9000 + i,
+    }));
+
+    // All users write encrypted sessions at the same time
+    await Promise.all(users.map((u) => pset(store, u.sid, sess(u.marker))));
+
+    // Read raw payloads in parallel: every single one must be ciphertext
+    const raws = await Promise.all(
+      users.map(
+        (u) =>
+          new Promise((resolve, reject) => {
+            client.get("unit_crypt_" + u.sid, (err, raw) =>
+              err ? reject(err) : resolve(raw)
+            );
+          })
+      )
+    );
+    raws.forEach((raw) => {
+      expect(typeof raw).toBe("string");
+      expect(raw).toMatch(/^[A-Za-z0-9+/=]+$/);
+      expect(raw).not.toContain('"views"');
+    });
+
+    // And every user must still decrypt to their own data
+    const datas = await Promise.all(users.map((u) => pget(store, u.sid)));
+    datas.forEach((data, i) => {
+      expect(data).toBeDefined();
+      expect(data.views).toBe(users[i].marker);
+    });
+  });
+
+  concurrencySuite(() => store);
 });
