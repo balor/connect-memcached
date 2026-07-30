@@ -1,6 +1,10 @@
 {
   "name": "connect-memcached",
   "version": "4.0.0",
+  "files": [
+    "index.js",
+    "lib"
+  ],
   "description": "Memcached session store for Connect",
   "keywords": [
     "memcached",
@@ -12,7 +16,7 @@
   "author": "Michał Thoma <me@balor.pl>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/balor/connect-memcached"
+    "url": "git+https://github.com/balor/connect-memcached.git"
   },
   "dependencies": {
     "kruptein": "3.4.x",
