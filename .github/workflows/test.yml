@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node-version: [18, 20, 22, 24, 25]
+        node-version: [18, 20, 22, 24, 25, 26]
 
     env:
       MEMCACHED_HOST: 127.0.0.1:11211

@@ -61,6 +61,20 @@ services:
       - NPM_CONFIG_UPDATE_NOTIFIER=false
     command: sh -c "npm install && npm test"
 
+  test-node-26:
+    image: node:26-alpine
+    depends_on:
+      - memcached
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      - NODE_ENV=test
+      - MEMCACHED_HOST=memcached:11211
+      - NPM_CONFIG_FUND=false
+      - NPM_CONFIG_UPDATE_NOTIFIER=false
+    command: sh -c "npm install && npm test"
+
   test-node-25:
     image: node:25-alpine
     depends_on:

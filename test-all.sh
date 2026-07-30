@@ -6,7 +6,7 @@ echo "Starting memcached..."
 docker-compose up -d memcached
 sleep 2
 
-NODE_VERSIONS=(18 20 22 24 25)
+NODE_VERSIONS=(18 20 22 24 25 26)
 FAILED=()
 
 for version in "${NODE_VERSIONS[@]}"; do
