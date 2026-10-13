@@ -19,7 +19,7 @@
     "url": "git+https://github.com/balor/connect-memcached.git"
   },
   "dependencies": {
-    "kruptein": "3.4.x",
+    "kruptein": "4.0.x",
     "memcached": "2.2.x"
   },
   "devDependencies": {
