@@ -64,15 +64,34 @@ app.listen(9341, function() {
 
 ## Upgrading to v4.x.x
 
+### v4.1.0
+
+v4.1.0 upgrades the `kruptein` dependency from 3.4.x to 4.0.x. There are no
+breaking changes.
+
+kruptein 4.0.x caches derived keys per store instance, so the PBKDF2 key
+derivation no longer runs on every `get`, `set` and `touch`. If you use the
+`secret` option, this cuts the CPU cost of each session read and write by a
+large margin.
+
+The ciphertext format is unchanged. Sessions encrypted by v4.0.0 are still
+readable after the upgrade and v4.0.0 can read sessions written by v4.1.0, so
+no flush is needed and a rolling deploy is safe.
+
+Upgrading from v3.x.x or earlier? The v4.0.0 breaking changes below still
+apply.
+
+### v4.0.0
+
 v4.0.0 upgrades the `kruptein` dependency from 3.1.x to 3.4.x and introduces
 two breaking changes:
 
-### 1. Node.js version requirement
+#### 1. Node.js version requirement
 
 **Breaking change:** v4.0.0 requires Node.js >= 18.0.0 (inherited from
 kruptein 3.4.x). Support for Node.js 14-16 has been dropped.
 
-### 2. Previously encrypted session data becomes unreadable
+#### 2. Previously encrypted session data becomes unreadable
 
 **Breaking change for encrypted sessions:** kruptein 3.4.x changed its key
 derivation (async PBKDF2 with 20 000 iterations instead of 15 000), so session
